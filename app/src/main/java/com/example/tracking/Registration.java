@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -23,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.harishpadmanabh.apppreferences.AppPreferences;
 
 import java.util.HashMap;
 
@@ -34,7 +36,7 @@ public class Registration extends AppCompatActivity implements LocationListener{
     ProgressDialog progressDialog;
     LocationManager locationManager;
     double latitude,longitude;
-
+    AppPreferences appPreferences;
     @Override
     public void onStart() {
         super.onStart();
@@ -54,6 +56,8 @@ public class Registration extends AppCompatActivity implements LocationListener{
         email=findViewById(R.id.emailxml);
         password=findViewById(R.id.passxml);
         mAuth = FirebaseAuth.getInstance();
+        appPreferences = AppPreferences.getInstance(this, getResources().getString(R.string.app_name));
+
         getloction();
         regbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +84,12 @@ public class Registration extends AppCompatActivity implements LocationListener{
                                     userMap.put("Name",name.getText().toString());
                                     userMap.put("Latitude", String.valueOf(latitude));
                                     userMap.put("Longitude",String.valueOf(longitude));
+
+                                    appPreferences.saveData("uidd",uid);
+                                    //appPreferences.saveData("keylong",String.valueOf(longitude));
+                                   // Log.e("keylat",String.valueOf(latitude));
+
+
 //                                    userMap.put("status", "Hi there I'm using Lapit Chat App.");
 //                                    userMap.put("image", "default");
 //                                    userMap.put("thumb_image", "default");
