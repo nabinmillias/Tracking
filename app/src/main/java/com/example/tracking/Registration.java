@@ -80,7 +80,7 @@ public class Registration extends AppCompatActivity implements LocationListener{
 
                                     //  String device_token = FirebaseInstanceId.getInstance().getToken();
 
-                                    HashMap<String, String> userMap = new HashMap<>();
+                                    HashMap<String, String> userMap = new HashMap<>();//hashmap is used instead of params.put
                                     userMap.put("Name",name.getText().toString());
                                     userMap.put("Latitude", String.valueOf(latitude));
                                     userMap.put("Longitude",String.valueOf(longitude));

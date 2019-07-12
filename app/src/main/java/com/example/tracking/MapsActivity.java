@@ -67,7 +67,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 LatLng sydney = new LatLng(latd,longd);
                 System.out.println(sydney);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                mMap.addMarker(new MarkerOptions().position(sydney).title("You are here"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
             }
 
