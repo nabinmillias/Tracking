@@ -82,8 +82,10 @@ public class Registration extends AppCompatActivity implements LocationListener{
 
                                     HashMap<String, String> userMap = new HashMap<>();//hashmap is used instead of params.put
                                     userMap.put("Name",name.getText().toString());
+                                    userMap.put("Email",email.getText().toString());
                                     userMap.put("Latitude", String.valueOf(latitude));
                                     userMap.put("Longitude",String.valueOf(longitude));
+                                    userMap.put("Uid",uid);
 
                                     appPreferences.saveData("uidd",uid);
                                     //appPreferences.saveData("keylong",String.valueOf(longitude));
