@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     LocationManager locationManager;
     double latitude,longitude;
     private DatabaseReference mDatabase;
-    DatabaseReference reff;
+
     @Override
     public void onStart() {
         super.onStart();
