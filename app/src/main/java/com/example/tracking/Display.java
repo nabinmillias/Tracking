@@ -60,10 +60,10 @@ double lat,longg;
 //                Toast.makeText(Display.this,longarry.get(position), Toast.LENGTH_SHORT).show();
                 SharedPreferences shared=getApplicationContext().getSharedPreferences("pref",MODE_PRIVATE);
                 SharedPreferences.Editor editor=shared.edit();
-                editor.putString("key1",userid);
+                editor.putString("key1",uidarry.get(position));
                 editor.apply();
 
-                Intent intent=new Intent(Display.this,MapsActivity.class);
+                Intent intent=new Intent(Display.this,MapsAll.class);
 
                 startActivity(intent);
 

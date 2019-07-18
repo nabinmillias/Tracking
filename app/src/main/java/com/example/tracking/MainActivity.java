@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         mAuth = FirebaseAuth.getInstance();
         email=findViewById(R.id.emailxml);
         password=findViewById(R.id.passxml);
+        appPreferences = AppPreferences.getInstance(this, getResources().getString(R.string.app_name));
         getlocation();
 
         logbtn.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +79,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
                                     userMap.put("Latitude", String.valueOf(latitude));
                                     userMap.put("Longitude",String.valueOf(longitude));
+
+
+                                    appPreferences.saveData("LatitudeLogin", String.valueOf(latitude));
+                                    appPreferences.saveData("LongitudeLogin", String.valueOf(longitude));
+
 
                                     mDatabase.child("Latitude").setValue(String.valueOf(latitude)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
