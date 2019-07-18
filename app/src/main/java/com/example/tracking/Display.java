@@ -5,6 +5,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +33,9 @@ import java.util.ArrayList;
 public class Display extends AppCompatActivity {
 ListView listView;
 DatabaseReference dref;
- TextView texth;
+
+ TextView texth,txtlath,txtloh,txtuih;
+    AppPreferences appPreferences;
     ArrayList<String> name=new ArrayList<>();
     ArrayList<String> uidarry=new ArrayList<>();
     ArrayList<String> latarry=new ArrayList<>();
@@ -46,13 +50,24 @@ double lat,longg;
         dref = FirebaseDatabase.getInstance().getReference("Users");
         final adapt apt=new  adapt();
         listView.setAdapter(apt);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(Display.this, name.get(position), Toast.LENGTH_SHORT).show();
-                Toast.makeText(Display.this,uidarry.get(position), Toast.LENGTH_SHORT).show();
-                Toast.makeText(Display.this, latarry.get(position), Toast.LENGTH_SHORT).show();
-                Toast.makeText(Display.this,longarry.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Display.this, name.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Display.this,uidarry.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Display.this, latarry.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(Display.this,longarry.get(position), Toast.LENGTH_SHORT).show();
+                SharedPreferences shared=getApplicationContext().getSharedPreferences("pref",MODE_PRIVATE);
+                SharedPreferences.Editor editor=shared.edit();
+                editor.putString("key1",userid);
+                editor.apply();
+
+                Intent intent=new Intent(Display.this,MapsActivity.class);
+
+                startActivity(intent);
+
+              //  appPreferences.saveData("usid", String.valueOf(uidarry));
 
 
 
@@ -65,7 +80,7 @@ double lat,longg;
                 Value = dataSnapshot.child("Name").getValue().toString();
                 userid=dataSnapshot.child("Uid").getValue().toString();
                 lat= Double.parseDouble(dataSnapshot.child("Latitude").getValue().toString());
-                longg=Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString());
+                longg= Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString());
                 name.add(Value);
                 uidarry.add(userid);
                 latarry.add(String.valueOf(lat));
@@ -118,7 +133,13 @@ double lat,longg;
                  LayoutInflater infl=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                  convertView=infl.inflate(R.layout.dislay,null);
                  texth=convertView.findViewById(R.id.textdislay);
+                 txtlath=convertView.findViewById(R.id.textla);
+                 txtloh=convertView.findViewById(R.id.textlong);
+                 txtuih=convertView.findViewById(R.id.textui);
                  texth.setText(name.get(position));
+                 txtlath.setText(latarry.get(position));
+                 txtloh.setText(longarry.get(position));
+                 txtuih.setText(uidarry.get(position));
                  return convertView;
              }
          }

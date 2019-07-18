@@ -10,4 +10,25 @@
         android:layout_marginLeft="2dp"
         android:textColor="#000"
         android:id="@+id/textdislay"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="#000"
+        android:id="@+id/textla"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="#000"
+        android:id="@+id/textlong"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:textColor="#000"
+        android:id="@+id/textui"/>
 </LinearLayout>

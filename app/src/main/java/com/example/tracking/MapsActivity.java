@@ -19,6 +19,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -74,7 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("message");
         appPreferences = AppPreferences.getInstance(this, getResources().getString(R.string.app_name));
-        String uid=appPreferences.getData("uidd");
+        FirebaseUser current_user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = current_user.getUid();
         reff=FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
         reff.addValueEventListener(new ValueEventListener() {
             @Override
